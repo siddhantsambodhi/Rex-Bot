@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  background-color: #F0EBFF;
+}
+
+.c-interaction {
+  background-color: #643CFF;
+  width: 500px;
+  height: 50px;
+  border-radius: 100rem;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  padding: 1rem;
+  overflow: hidden;
+  position: relative;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  box-shadow: 1px 6px 20px 3px rgba(187, 153, 255, 0.4);
+}
+.c-interaction__button {
+  border-radius: 100rem;
+  border: 0;
+  background: #8364FF;
+  min-width: 50px;
+  min-height: 50px;
+  display: inline-block;
+  margin: 0;
+  cursor: pointer;
+  position: relative;
+  margin-left: 10px;
+}
+.c-interaction__button:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  background: rgba(100, 75, 198, 0.5);
+  -webkit-transition: .15s ease;
+  transition: .15s ease;
+  position: absolute;
+  border-radius: inherit;
+}
+.c-interaction__button:hover svg {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+.c-interaction__button:hover:after {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.c-interaction__button svg {
+  color: #FFFFFF;
+  z-index: 2;
+  position: relative;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: .4s ease;
+  transition: .4s ease;
+  font: bold;
+}
+.c-interaction__input {
+  -webkit-transition: .6s ease;
+  transition: .6s ease;
+  background: #8364FF;
+  margin-right: 10px;
+  border: 0;
+  padding: 1rem;
+  border-radius: 100rem;
+  width: 100%;
+  margin-left: 1rem;
+  color: #FFFFFF;
+  font-size: 1rem;
+  letter-spacing: 1.3px;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-transform-origin: -68px 0px;
+          transform-origin: -68px 0px;
+}
+.c-interaction__input::-webkit-input-placeholder {
+  color: #b9f;
+}
+.c-interaction__input::-moz-placeholder {
+  color: #b9f;
+}
+.c-interaction__input:-ms-input-placeholder {
+  color: #b9f;
+}
+.c-interaction__input::-ms-input-placeholder {
+  color: #b9f;
+}
+.c-interaction__input::placeholder {
+  color: #b9f;
+}
+.c-interaction_main{
+    margin-bottom: 10px;
+  background-color: #643CFF;
+  width: 250px;
+  height: 200px;
+  border-radius: 30px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  padding: 1rem;
+  overflow: hidden;
+  position: relative;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  box-shadow: 1px 6px 20px 3px rgba(187, 153, 255, 0.4);
+}
+
+.B{
+  margin-bottom: 150px;
+}
+
+
+</style>
+
+
+
+</head>
+<body>
+<center>
+  <h1 class="B">Bot-Rex</h1>
+<div>
+    <center>
+<div id = "chatbox">
+    </center>
+</div>
+<div id = "userInput" class='c-interaction'>
+<input id ="textInput" class='c-interaction__input' type ="text" name="getData" placeholder="Message">
+<button id = "buttonInput" class='c-interaction__button svg' type = "submit"><b>Send</b></button>
+<button onclick="href='index2.html';" class='c-interaction__button svg' type = "submit"><b>?</b></button>
+</div>
+</center>
+
+
+<script>
+
+
+function getBotResponse(){
+  
+var rawText = $("#textInput").val();
+
+var userHtml = '<p class = "userText"><span>' + rawText + '</span></p>';
+
+
+$.get("/get", {getData:rawText }).done(function(data) {
+var botHtml = '<p class ="botText"><span>' + data + '</span></p>';
+$("#chatbox").append(botHtml);
+});
+}
+
+$("#buttonInput").click(function() {
+getBotResponse();
+})
+</script>
+</div>
+</body>
+</html>
